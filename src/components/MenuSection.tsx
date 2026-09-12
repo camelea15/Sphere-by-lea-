@@ -101,21 +101,21 @@ export const MenuSection: React.FC<MenuSectionProps> = ({ currentLang }) => {
             )}
           </div>
 
-          {/* Category Tabs */}
-          <div className="flex items-center justify-start md:justify-center gap-2 overflow-x-auto pb-2 scrollbar-none">
+          {/* Category Tabs with desktop overflow-visible and flex-wrap to prevent any icon clipping */}
+          <div className="flex items-center justify-start md:justify-center md:flex-wrap md:overflow-visible gap-2 md:gap-2.5 overflow-x-auto px-4 py-2 md:py-3 max-w-full md:max-w-5xl mx-auto scrollbar-none">
             {categories.map((cat) => {
               const isSelected = selectedCategory === cat.id;
               return (
                 <button
                   key={cat.id}
                   onClick={() => setSelectedCategory(cat.id)}
-                  className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-xs sm:text-sm font-bold whitespace-nowrap transition-all duration-200 cursor-pointer ${
+                  className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-xs sm:text-sm font-bold whitespace-nowrap shrink-0 transition-all duration-200 cursor-pointer ${
                     isSelected
                       ? 'bg-[#173D8F] text-white shadow-md shadow-[#173D8F]/25 scale-105'
                       : 'bg-[#F4FAFC] text-gray-700 hover:bg-[#173D8F]/10 border border-gray-200/60'
                   }`}
                 >
-                  <span>{cat.icon}</span>
+                  <span className="shrink-0 text-sm sm:text-base leading-none select-none inline-block">{cat.icon}</span>
                   <span>{cat.label}</span>
                 </button>
               );
