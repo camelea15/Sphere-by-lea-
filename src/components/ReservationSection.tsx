@@ -31,19 +31,32 @@ export const ReservationSection: React.FC<ReservationSectionProps> = ({ currentL
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
+  const sanitizeInput = (val: string, maxLen: number): string => {
+    // Remove dangerous control characters while keeping standard printable characters and unicode
+    return val.replace(/[\u0000-\u0008\u000B-\u000C\u000E-\u001F\u007F-\u009F]/g, '').slice(0, maxLen);
+  };
+
   const validate = (): boolean => {
     const newErrors: Partial<Record<keyof ReservationFormData, string>> = {};
+    const cleanName = formData.fullName.trim();
+    const cleanPhone = formData.phone.trim();
+    const cleanMessage = formData.message.trim();
 
-    if (!formData.fullName.trim()) {
+    if (!cleanName || cleanName.length < 2) {
       newErrors.fullName = t.reservation.errorName;
+    } else if (cleanName.length > 100) {
+      newErrors.fullName = 'Le nom est trop long (maximum 100 caractères)';
     }
 
-    if (!formData.phone.trim() || formData.phone.trim().length < 8) {
+    const phoneRegex = /^[+]?[\d\s\-().]{8,25}$/;
+    if (!cleanPhone || cleanPhone.length < 8 || !phoneRegex.test(cleanPhone)) {
       newErrors.phone = t.reservation.errorPhone;
     }
 
-    if (!formData.message.trim()) {
+    if (!cleanMessage || cleanMessage.length < 3) {
       newErrors.message = t.reservation.errorMessage;
+    } else if (cleanMessage.length > 1000) {
+      newErrors.message = 'Le message est trop long (maximum 1000 caractères)';
     }
 
     setErrors(newErrors);
@@ -59,14 +72,21 @@ export const ReservationSection: React.FC<ReservationSectionProps> = ({ currentL
 
     setIsSubmitting(true);
 
+    const safeName = sanitizeInput(formData.fullName.trim(), 100);
+    const safePhone = sanitizeInput(formData.phone.trim(), 25);
+    const safeGuests = sanitizeInput(formData.guests.trim(), 30);
+    const safeDate = sanitizeInput(formData.date.trim(), 20);
+    const safeTime = sanitizeInput(formData.time.trim(), 20);
+    const safeMessage = sanitizeInput(formData.message.trim(), 1000);
+
     // Build the clean WhatsApp message text with all visitor inputs
     const greeting = t.reservation.waGreeting;
-    const namePart = `• ${t.reservation.waName}: ${formData.fullName.trim()}`;
-    const phonePart = `• ${t.reservation.waPhone}: ${formData.phone.trim()}`;
-    const guestsPart = formData.guests ? `• ${t.reservation.waGuests}: ${formData.guests}` : '';
-    const datePart = formData.date ? `• ${t.reservation.waDate}: ${formData.date}` : '';
-    const timePart = formData.time ? `• ${t.reservation.waTime}: ${formData.time}` : '';
-    const messagePart = `• ${t.reservation.waMessage}: ${formData.message.trim()}`;
+    const namePart = `• ${t.reservation.waName}: ${safeName}`;
+    const phonePart = `• ${t.reservation.waPhone}: ${safePhone}`;
+    const guestsPart = safeGuests ? `• ${t.reservation.waGuests}: ${safeGuests}` : '';
+    const datePart = safeDate ? `• ${t.reservation.waDate}: ${safeDate}` : '';
+    const timePart = safeTime ? `• ${t.reservation.waTime}: ${safeTime}` : '';
+    const messagePart = `• ${t.reservation.waMessage}: ${safeMessage}`;
 
     const lines = [
       greeting,
@@ -88,7 +108,12 @@ export const ReservationSection: React.FC<ReservationSectionProps> = ({ currentL
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSuccess(true);
-      window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+      if (typeof window !== 'undefined') {
+        const win = window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+        if (win) {
+          win.opener = null;
+        }
+      }
     }, 600);
   };
 
@@ -155,6 +180,9 @@ export const ReservationSection: React.FC<ReservationSectionProps> = ({ currentL
                   <input
                     type="text"
                     id="fullName"
+                    name="fullName"
+                    autoComplete="name"
+                    maxLength={100}
                     value={formData.fullName}
                     onChange={(e) => {
                       setFormData({ ...formData, fullName: e.target.value });
@@ -185,6 +213,10 @@ export const ReservationSection: React.FC<ReservationSectionProps> = ({ currentL
                   <input
                     type="tel"
                     id="phone"
+                    name="phone"
+                    autoComplete="tel"
+                    inputMode="tel"
+                    maxLength={25}
                     value={formData.phone}
                     onChange={(e) => {
                       setFormData({ ...formData, phone: e.target.value });
@@ -286,7 +318,9 @@ export const ReservationSection: React.FC<ReservationSectionProps> = ({ currentL
                 </label>
                 <textarea
                   id="message"
+                  name="message"
                   rows={4}
+                  maxLength={1000}
                   value={formData.message}
                   onChange={(e) => {
                     setFormData({ ...formData, message: e.target.value });

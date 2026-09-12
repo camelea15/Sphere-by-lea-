@@ -85,14 +85,14 @@ export const Navbar: React.FC<NavbarProps> = ({ currentLang, onLanguageChange })
     >
       {/* Primary Top Bar */}
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-2.5 sm:py-3.5 flex items-center justify-between">
-        {/* Logo */}
+        {/* Brand Identity */}
         <a
           href="#hero"
           onClick={(e) => handleNavClick(e, '#hero')}
-          className="flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#20A8AD] rounded-full p-0.5 group shrink-0"
+          className="flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#20A8AD] rounded-lg py-1 px-1 group shrink-0"
           aria-label="Sphere by Léa Home"
         >
-          <BrandLogo size="md" showText={false} />
+          <BrandLogo size="md" inverted={isScrolled} />
         </a>
 
         {/* Desktop & Tablet Navigation Links: Menu, Réservation, Contact, Localisation */}

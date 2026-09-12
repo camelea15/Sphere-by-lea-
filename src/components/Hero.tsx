@@ -89,9 +89,9 @@ export const Hero: React.FC<HeroProps> = ({ currentLang }) => {
         </div>
 
         {/* Trust Indicators Below Buttons */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-6 max-w-3xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-6 w-full max-w-3xl mx-auto">
           {/* Trust 1: Seafood Specialty */}
-          <div className="flex items-center justify-center gap-3 px-4 py-3 rounded-2xl bg-white/10 backdrop-blur-md border border-white/15 text-left rtl:text-right">
+          <div className="w-full flex items-center justify-start sm:justify-center md:justify-center gap-3 px-4 py-3 rounded-2xl bg-white/10 backdrop-blur-md border border-white/15 text-left rtl:text-right">
             <div className="w-10 h-10 rounded-xl bg-[#20A8AD]/20 flex items-center justify-center shrink-0">
               <Fish className="w-5 h-5 text-[#20A8AD]" />
             </div>
@@ -102,7 +102,7 @@ export const Hero: React.FC<HeroProps> = ({ currentLang }) => {
           </div>
 
           {/* Trust 2: Google Rating 4.4/5 */}
-          <div className="flex items-center justify-center gap-3 px-4 py-3 rounded-2xl bg-white/10 backdrop-blur-md border border-white/15 text-left rtl:text-right">
+          <div className="w-full flex items-center justify-start sm:justify-center md:justify-center gap-3 px-4 py-3 rounded-2xl bg-white/10 backdrop-blur-md border border-white/15 text-left rtl:text-right">
             <div className="w-10 h-10 rounded-xl bg-amber-400/20 flex items-center justify-center shrink-0">
               <Star className="w-5 h-5 fill-amber-400 text-amber-400" />
             </div>
@@ -113,7 +113,7 @@ export const Hero: React.FC<HeroProps> = ({ currentLang }) => {
           </div>
 
           {/* Trust 3: Over 300,000 Instagram followers */}
-          <div className="flex items-center justify-center gap-3 px-4 py-3 rounded-2xl bg-white/10 backdrop-blur-md border border-white/15 text-left rtl:text-right">
+          <div className="w-full flex items-center justify-start sm:justify-center md:justify-center gap-3 px-4 py-3 rounded-2xl bg-white/10 backdrop-blur-md border border-white/15 text-left rtl:text-right">
             <div className="w-10 h-10 rounded-xl bg-pink-500/20 flex items-center justify-center shrink-0">
               <Users className="w-5 h-5 text-pink-300" />
             </div>

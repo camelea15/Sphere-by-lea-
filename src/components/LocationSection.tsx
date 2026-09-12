@@ -39,6 +39,7 @@ export const LocationSection: React.FC<LocationSectionProps> = ({ currentLang })
               src="https://maps.google.com/maps?q=186+Rue+Ferme+Pons,+Kouba+16000,+Alger&t=&z=16&ie=UTF8&iwloc=&output=embed"
               className="w-full h-full border-0 absolute inset-0"
               loading="lazy"
+              sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
               referrerPolicy="no-referrer-when-downgrade"
             />
           </div>

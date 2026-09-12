@@ -14,16 +14,30 @@ import { FloatingActions } from './components/FloatingActions';
 
 export function App() {
   const [currentLang, setCurrentLang] = useState<Language>(() => {
-    const saved = localStorage.getItem('sphere_lang') as Language;
-    if (saved && ['fr', 'en', 'ar', 'zh'].includes(saved)) {
-      return saved;
+    try {
+      if (typeof window !== 'undefined' && window.localStorage) {
+        const saved = localStorage.getItem('sphere_lang') as Language;
+        if (saved && ['fr', 'en', 'ar', 'zh'].includes(saved)) {
+          return saved;
+        }
+      }
+    } catch {
+      // Ignore storage access errors in restricted iframe/private mode
     }
     return 'fr';
   });
 
   const handleLanguageChange = (lang: Language) => {
-    setCurrentLang(lang);
-    localStorage.setItem('sphere_lang', lang);
+    if (['fr', 'en', 'ar', 'zh'].includes(lang)) {
+      setCurrentLang(lang);
+      try {
+        if (typeof window !== 'undefined' && window.localStorage) {
+          localStorage.setItem('sphere_lang', lang);
+        }
+      } catch {
+        // Fallback silently if storage is restricted
+      }
+    }
   };
 
   useEffect(() => {

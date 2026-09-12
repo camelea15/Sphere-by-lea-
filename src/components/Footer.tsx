@@ -43,7 +43,7 @@ export const Footer: React.FC<FooterProps> = ({ currentLang }) => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 pb-14 border-b border-white/10">
           {/* Col 1: Brand & Identity */}
           <div className="lg:col-span-4 space-y-4">
-            <BrandLogo size="lg" showText={false} />
+            <BrandLogo size="lg" />
             <p className="text-sm text-blue-200 leading-relaxed font-normal pt-2">
               Restaurant gastronomique spécialisé en poissons frais, fruits de mer et paellas artisanales, situé à Kouba, Alger.
             </p>
@@ -167,7 +167,17 @@ export const Footer: React.FC<FooterProps> = ({ currentLang }) => {
           <div className="flex items-center gap-1.5 text-blue-200 font-medium">
             <span>Conçu & développé avec</span>
             <Heart className="w-3.5 h-3.5 text-red-400 fill-red-400 inline" />
-            <span>par <span className="text-white font-bold tracking-wide">WebLab.Dz</span></span>
+            <span>
+              par{' '}
+              <a
+                href="https://www.instagram.com/weblab.dz?stkn=bHhkYzRyNGhnZDJu&utm_source=qr"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white font-bold tracking-wide hover:text-[#20A8AD] underline decoration-[#20A8AD]/50 hover:decoration-[#20A8AD] transition-colors"
+              >
+                WebLab.Dz
+              </a>
+            </span>
           </div>
 
           {/* Back to top */}
