@@ -1,0 +1,6 @@
+{
+  "name": "Sphere by Léa | Restaurant Spécialité Poisson",
+  "description": "Discover Sphere by Léa in Kouba: fresh fish, seafood platters, paellas, and Mediterranean flavors. Book your table via WhatsApp.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

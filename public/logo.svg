@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="1000" height="1000">
+  <defs>
+    <style>
+      .navy-fish { fill: #17387E; }
+      .teal-fish { fill: #00A3B4; }
+      .white-stroke { fill: none; stroke: #FFFFFF; stroke-linecap: round; stroke-linejoin: round; }
+      .white-fill { fill: #FFFFFF; }
+      .navy-text {
+        font-family: 'Arial Black', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Montserrat', sans-serif;
+        font-weight: 900;
+        fill: #17387E;
+      }
+    </style>
+  </defs>
+
+  <!-- Clean Circular Background Badge -->
+  <circle cx="500" cy="500" r="492" fill="#FFFFFF" />
+
+  <!-- ==================== TOP FISH (NAVY BLUE) ==================== -->
+  <!-- 
+    Tail along upper left (~9:30 to 8:30)
+    Dorsal fin at ~10:30
+    Body curves across the top (11:00 -> 1:00)
+    Head at ~2:00 pointing down
+  -->
+  <path class="navy-fish" d="
+    M 175 375
+    C 165 315, 185 240, 225 185
+    C 205 170, 175 160, 195 130
+    C 215 105, 255 125, 260 150
+    C 310 105, 385 65, 480 55
+    C 620 40, 750 100, 835 205
+    C 885 268, 895 350, 845 410
+    C 805 458, 740 475, 680 470
+    C 670 440, 680 400, 715 370
+    C 760 330, 765 270, 725 215
+    C 675 145, 570 120, 480 135
+    C 410 146, 350 185, 305 240
+    C 370 205, 445 200, 485 240
+    C 460 270, 410 290, 360 295
+    C 310 300, 260 320, 220 360
+    C 195 385, 180 395, 175 375 Z
+  " />
+
+  <!-- White Dorsal Fin Arc on Blue Fish -->
+  <path class="white-stroke" stroke-width="12" d="M 320 125 C 410 75, 530 65, 660 85" />
+
+  <!-- White Stylized S-Wave Gill on Blue Fish -->
+  <path class="white-stroke" stroke-width="14" d="M 740 320 C 785 295, 805 240, 775 185 C 755 150, 710 140, 675 145" />
+
+  <!-- Blue Fish Eye: White Outer Ring with Dark Pupil -->
+  <circle cx="755" cy="240" r="34" class="white-fill" />
+  <circle cx="757" cy="240" r="18" class="navy-fish" />
+
+  <!-- ==================== BOTTOM FISH (TEAL) ==================== -->
+  <path class="teal-fish" d="
+    M 345 320
+    C 395 380, 405 460, 365 530
+    C 330 590, 265 630, 215 670
+    C 185 695, 175 735, 195 770
+    C 235 840, 335 910, 450 930
+    C 600 955, 750 890, 845 780
+    C 895 722, 920 645, 915 570
+    C 885 605, 840 625, 795 620
+    C 755 615, 715 590, 680 560
+    C 740 620, 715 700, 635 755
+    C 545 818, 415 815, 330 745
+    C 275 700, 255 630, 270 560
+    C 285 490, 320 420, 310 350
+    C 320 335, 332 325, 345 320 Z
+  " />
+
+  <!-- Teal Fish Eye: Solid White Circle -->
+  <circle cx="350" cy="415" r="22" class="white-fill" />
+
+  <!-- Teal Fish White Gill / Fin Notch -->
+  <path class="white-stroke" stroke-width="12" d="M 465 590 C 510 610, 545 650, 530 685" />
+
+  <!-- ==================== CENTER TEXT 'BY LEA' ==================== -->
+  <g transform="translate(525, 480) rotate(-35)">
+    <text x="0" y="-28" class="navy-text" font-size="96" text-anchor="middle" letter-spacing="6">BY</text>
+    <text x="0" y="82" class="navy-text" font-size="142" text-anchor="middle" letter-spacing="8">LEA</text>
+  </g>
+</svg>
