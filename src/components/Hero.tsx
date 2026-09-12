@@ -2,6 +2,7 @@ import React from 'react';
 import { Language } from '../types';
 import { translations } from '../data/translations';
 import { Compass, MessageCircle, Star, Users, Fish, ArrowDown } from 'lucide-react';
+import facadeImg from '../assets/images/sphere_facade_1789226609228.jpg';
 
 interface HeroProps {
   currentLang: Language;
@@ -27,14 +28,14 @@ export const Hero: React.FC<HeroProps> = ({ currentLang }) => {
       {/* Background Image: Official Restaurant Façade with Dark Blue Overlay */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/facade.jpg"
+          src={facadeImg || "/facade.jpg"}
           alt="Restaurant Façade Sphere by Léa Kouba Algiers"
           referrerPolicy="no-referrer"
           className="w-full h-full object-cover object-center scale-105 transition-transform duration-1000 ease-out"
           onError={(e) => {
             const target = e.currentTarget;
-            if (!target.src.includes('sphere_facade')) {
-              target.src = '/src/assets/images/sphere_facade_1789226609228.jpg';
+            if (!target.src.includes('facade.jpg')) {
+              target.src = '/facade.jpg';
             }
           }}
         />

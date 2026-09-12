@@ -33,7 +33,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentLang, onLanguageChange })
       }
 
       // Detect active section
-      const sections = ['hero', 'menu', 'reservation', 'contact', 'location'];
+      const sections = ['hero', 'menu', 'reservation', 'location', 'contact'];
       const scrollPos = window.scrollY + 200;
 
       for (const sectionId of sections) {
@@ -56,8 +56,8 @@ export const Navbar: React.FC<NavbarProps> = ({ currentLang, onLanguageChange })
   const navLinks = [
     { href: '#menu', label: t.nav.menu, id: 'menu' },
     { href: '#reservation', label: t.nav.reservation, id: 'reservation' },
-    { href: '#contact', label: t.nav.contact, id: 'contact' },
     { href: '#location', label: t.nav.location, id: 'location' },
+    { href: '#contact', label: t.nav.contact, id: 'contact' },
   ];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -95,7 +95,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentLang, onLanguageChange })
           <BrandLogo size="md" inverted={isScrolled} />
         </a>
 
-        {/* Desktop & Tablet Navigation Links: Menu, Réservation, Contact, Localisation */}
+        {/* Desktop & Tablet Navigation Links: Menu, Réservation, Localisation, Contact */}
         <nav className="hidden md:flex items-center gap-1 lg:gap-2">
           {navLinks.map((link) => {
             const isActive = activeSection === link.id;
@@ -196,33 +196,6 @@ export const Navbar: React.FC<NavbarProps> = ({ currentLang, onLanguageChange })
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
-      </div>
-
-      {/* Mobile visible page navigation bar: Menu, Réservation, Contact, Localisation */}
-      <div className={`md:hidden border-t px-2 py-1.5 flex items-center justify-around gap-1 overflow-x-auto no-scrollbar transition-colors ${
-        isScrolled
-          ? 'border-gray-100 bg-white/90'
-          : 'border-white/10 bg-black/25 backdrop-blur-sm'
-      }`}>
-        {navLinks.map((link) => {
-          const isActive = activeSection === link.id;
-          return (
-            <a
-              key={link.id}
-              href={link.href}
-              onClick={(e) => handleNavClick(e, link.href)}
-              className={`px-2.5 py-1 rounded-full text-[11px] font-bold tracking-tight whitespace-nowrap transition-all duration-200 ${
-                isActive
-                  ? 'bg-[#20A8AD] text-white shadow-sm'
-                  : isScrolled
-                  ? 'text-[#173D8F] hover:bg-[#F4FAFC]'
-                  : 'text-white/90 hover:bg-white/15'
-              }`}
-            >
-              {link.label}
-            </a>
-          );
-        })}
       </div>
 
       {/* Mobile Drawer Navigation */}

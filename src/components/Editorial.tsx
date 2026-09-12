@@ -2,6 +2,7 @@ import React from 'react';
 import { Language } from '../types';
 import { translations } from '../data/translations';
 import { Anchor, ShieldCheck, Sparkles, Utensils } from 'lucide-react';
+import seafoodPlatterImg from '../assets/images/seafood_platter_1789226651266.jpg';
 
 interface EditorialProps {
   currentLang: Language;
@@ -64,10 +65,18 @@ export const Editorial: React.FC<EditorialProps> = ({ currentLang }) => {
           <div className="lg:col-span-6 relative">
             <div className="relative rounded-3xl overflow-hidden shadow-2xl ring-1 ring-[#173D8F]/15 group">
               <img
-                src="/src/assets/images/seafood_platter_1789226651266.jpg"
+                src={seafoodPlatterImg || "/seafood_platter.jpg"}
                 alt="Plateau de fruits de mer généreux chez Sphere by Léa Kouba"
                 referrerPolicy="no-referrer"
                 className="w-full h-[360px] sm:h-[420px] object-cover group-hover:scale-105 transition-transform duration-700"
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  if (!target.src.includes('seafood_platter.jpg') && !target.src.includes('unsplash')) {
+                    target.src = '/seafood_platter.jpg';
+                  } else if (!target.src.includes('unsplash')) {
+                    target.src = 'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=1200&q=80';
+                  }
+                }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#173D8F]/80 via-transparent to-transparent" />
               
